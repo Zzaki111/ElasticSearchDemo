@@ -1,0 +1,23 @@
+{ "properties":{
+    "seriesId":{"type":"long"},
+    "fileList":{
+      "type":"nested",
+      "properties":{
+        "id":{"type":"long"},
+        "patientId":{"type":"string"},
+        "studyId":{"type":"string"},
+        "instanceId":{"type":"string"},
+        "instanceNo":{"type":"long"},
+        "filePath":{"type":"string"},
+        "fileSize":{"type":"long"},
+        "fileMd5":{"type":"string"},
+        "createTime":{
+          "type":"date"
+        },
+        "updateTime":{
+          "type":"date"
+        }
+      }
+    }
+  }
+}

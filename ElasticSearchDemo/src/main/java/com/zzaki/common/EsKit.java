@@ -41,7 +41,7 @@ public class EsKit {
     public static boolean createIndex(String indexName) throws Exception {
         CreateIndex createIndex = new CreateIndex.Builder(indexName).build();
         JestResult jestResult = jestClient.execute(createIndex);
-        jestClient.shutdownClient();
+        //jestClient.shutdownClient();
         return jestResult.isSucceeded();
     }
 
@@ -56,7 +56,7 @@ public class EsKit {
     public static boolean createIndexMapping(String indexName,String type,String source) throws Exception {
         PutMapping putMapping = new PutMapping.Builder(indexName,type,source).build();
         JestResult jestResult = jestClient.execute(putMapping);
-        jestClient.shutdownClient();
+        //jestClient.shutdownClient();
         return jestResult.isSucceeded();
     }
 
@@ -71,7 +71,7 @@ public class EsKit {
     public static <T>boolean insert(String indexName,String type,T document) throws Exception{
         Index index = new Index.Builder(document).index(indexName).type(type).build();
         JestResult jestResult = jestClient.execute(index);
-        jestClient.shutdownClient();
+        //jestClient.shutdownClient();
         return jestResult.isSucceeded();
     }
 
@@ -91,7 +91,7 @@ public class EsKit {
             bulkBuilder.addAction(index);
         });
         JestResult jestResult = jestClient.execute(bulkBuilder.build());
-        jestClient.shutdownClient();
+        //jestClient.shutdownClient();
         return jestResult.isSucceeded();
     }
 
@@ -122,7 +122,7 @@ public class EsKit {
         hits.stream().forEach(h->{
             returnSource.add(h.source);
         });
-        jestClient.shutdownClient();
+        //jestClient.shutdownClient();
         return returnSource;
     }
 
@@ -137,7 +137,7 @@ public class EsKit {
     public boolean deleteIndex(String indexName)throws Exception{
         DeleteIndex deleteIndex = new DeleteIndex.Builder(indexName).build();
         JestResult jestResult  = jestClient.execute(deleteIndex);
-        jestClient.shutdownClient();
+        //jestClient.shutdownClient();
         return jestResult.isSucceeded();
     }
 
@@ -152,7 +152,7 @@ public class EsKit {
     public boolean indicesExists(String indexName)throws Exception{
         IndicesExists indicesExists = new IndicesExists.Builder(indexName).build();
         JestResult result  = jestClient.execute(indicesExists);
-        jestClient.shutdownClient();
+        //jestClient.shutdownClient();
         if (result.getResponseCode() == 200)
             return true;
         else
@@ -170,6 +170,6 @@ public class EsKit {
     public void clearCache() throws Exception{
         ClearCache clearCache = new ClearCache.Builder().build();
         jestClient.execute(clearCache);
-        jestClient.shutdownClient();
+        //jestClient.shutdownClient();
     }
 }
